@@ -44,6 +44,11 @@ const externalContracts = {
         },
         {
           inputs: [],
+          name: "GraduationClosed",
+          type: "error",
+        },
+        {
+          inputs: [],
           name: "NotAContract",
           type: "error",
         },
@@ -55,6 +60,28 @@ const externalContracts = {
         {
           inputs: [],
           name: "NotInAllowList",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "OwnableInvalidOwner",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "OwnableUnauthorizedAccount",
           type: "error",
         },
         {
@@ -194,6 +221,19 @@ const externalContracts = {
         },
         {
           inputs: [],
+          name: "graduationOpen",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
           name: "isOpen",
           outputs: [
             {
@@ -228,6 +268,13 @@ const externalContracts = {
         {
           inputs: [],
           name: "toggleBatchOpenStatus",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "toggleGraduationOpenStatus",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
