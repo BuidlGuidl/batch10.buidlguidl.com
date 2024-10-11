@@ -82,9 +82,9 @@ The final step in the batch will be a project where you will create a full-scale
 
 To help you make the most of your BuidlGuidl Batch experience, we've gathered some essential resources and guides:
 
-- **Scaffold-Eth2**: A modern, clean version of Scaffold-ETH with NextJS, RainbowKit, Wagmi, and Typescript. Supports Hardhat and Foundry. You can find the repo [here](https://github.com/scaffold-eth/scaffold-eth-2)
+- **Scaffold-Eth 2**: A modern, clean version of Scaffold-ETH with NextJS, RainbowKit, Wagmi, and Typescript. Supports Hardhat and Foundry. You can find the repo [here](https://github.com/scaffold-eth/scaffold-eth-2)
 - **Austin Griffith's YouTube**: https://www.youtube.com/channel/UC_HI2i2peo1A-STdG22GFsA/videos
-- **Scaffold-ETH2 Contribution Guide**: If you're looking to contribute to our open-source projects, this guide provides valuable insights on how to get started. Check it out [here](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md).
+- **Scaffold-ETH 2 Contribution Guide**: If you're looking to contribute to our open-source projects, this guide provides valuable insights on how to get started. Check it out [here](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md).
 - **PR Guide**: For a detailed understanding of the pull request process, our guide is a great resource. You can find it [here](https://gist.github.com/ZakGriffith/69d1eb8baebddd7d370b87a65a7e3ec0).
 
 The Scaffold-ETH2 and PR guides are a great place to start, but you may have to mold the instructions to suit your needs!
