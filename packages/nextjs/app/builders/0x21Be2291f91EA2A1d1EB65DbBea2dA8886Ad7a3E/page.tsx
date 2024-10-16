@@ -11,8 +11,7 @@ const KenpachiProfile: NextPage = () => {
           <h2 className="font-bold text-xl mb-2 text-center">Favvie Kenpachi</h2>
           <div className="text-center">
             <p>Front-end Developer / Smart Contract Developer</p>
-            {/* <p>Engineer turned Frontend Developer turned Smart Contract Developer</p> */}
-            <p className="">
+            <p>
               From pipettes to programming, my journey as a developer has been a thrilling ride. A chemical engineer
               turned tech enthusiast el teribleê, I am now dedicated to mastering smart contract and frontend
               development.
