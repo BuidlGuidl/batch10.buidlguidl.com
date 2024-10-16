@@ -1,20 +1,22 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import type { NextPage } from "next";
 
-// import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-
-const Profile: NextPage = () => {
+const KenpachiProfile: NextPage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="card shadow-xl rounded-lg p-6 ">
+    <div className="flex items-center justify-center h-full max-h-screen pt-16">
+      <div className="card shadow-lg rounded-lg p-6 max-w-md">
         <Image src={"/avatar.webp"} width={100} height={100} alt={"Profile"} className="rounded-full self-center" />
         <div className="px-6 py-4 flex flex-col items-center">
           <h2 className="font-bold text-xl mb-2 text-center">Favvie Kenpachi</h2>
           <div className="text-center">
             <p>Front-end Developer / Smart Contract Developer</p>
+            {/* <p>Engineer turned Frontend Developer turned Smart Contract Developer</p> */}
+            <p className="">
+              From pipettes to programming, my journey as a developer has been a thrilling ride. A chemical engineer
+              turned tech enthusiast el teribleê, I am now dedicated to mastering smart contract and frontend
+              development.
+            </p>
             <p>Address: 0x21Be2291f91EA2A1d1EB65DbBea2dA8886Ad7a3E</p>
           </div>
           <div className="flex justify-center space-x-4">
@@ -43,4 +45,4 @@ const Profile: NextPage = () => {
   );
 };
 
-export default Profile;
+export default KenpachiProfile;
