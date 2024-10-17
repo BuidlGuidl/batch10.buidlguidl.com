@@ -16,8 +16,8 @@ const page: NextPage = () => {
         <h1 className="text-4xl font-bold">Michael Nwachukwu</h1>
         <p className="text-lg font-medium">Fullstack Engineer | Smart contract Developer | Technical Writer</p>
         <p className="text-center">
-          I love building things and sharing my knowledge on HashNode. Im currently broadening my knowledge by
-          particpating in the Speeed Run Ethereum BuidlGuidl program, building cool stuff with other smart developers
+          I love building things and sharing my knowledge on HashNode. I am currently broadening my knowledge by
+          participating in the Speed Run Ethereum BuidlGuidl program, building cool stuff with other smart developers
           and learning along the way.
         </p>
         <div className="inline-flex items-center gap-4">
