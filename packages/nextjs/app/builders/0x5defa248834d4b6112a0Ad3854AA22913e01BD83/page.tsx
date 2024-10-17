@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import type { NextPage } from "next";
 
-const page: NextPage = () => {
+const MichaelNwachukwuProfile: NextPage = () => {
   return (
     <main className="flex max-h-screen justify-center items-center h-full w-full pt-16">
       <div className="flex flex-col items-center gap-2 max-w-xl">
@@ -61,4 +61,4 @@ const page: NextPage = () => {
   );
 };
 
-export default page;
+export default MichaelNwachukwuProfile;
