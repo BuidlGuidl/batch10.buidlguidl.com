@@ -8,10 +8,10 @@ const BelloAbraham: NextPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-black to-blue-900 flex items-center justify-center p-4">
       <ShootingStars />
 
-      <div className="bg-base-300 text-white p-6 rounded-3xl max-w-2xl mx-auto">
+      <div className="bg-[#212638] text-white p-6 rounded-3xl max-w-2xl mx-auto">
         <div className="rounded-2xl p-4 mb-4">
           <Image
-            src="/avatar.jpg"
+            src="/bello/bello.jpg"
             alt="Bello abraham"
             width={160}
             height={160}
