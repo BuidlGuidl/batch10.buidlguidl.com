@@ -21,7 +21,7 @@ const MichaelNwachukwuProfile: NextPage = () => {
     <main className="flex max-h-screen justify-center items-center h-full w-full pt-16">
       <div className="flex flex-col items-center gap-2 max-w-xl">
         <Image
-          src="/michael-nwachukwu.png"
+          src="/michaelNwachukwu-images/michael-nwachukwu.png"
           alt="0x5defa248834d4b6112a0Ad3854AA22913e01BD83"
           width={140}
           height={140}
