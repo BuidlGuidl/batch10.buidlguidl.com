@@ -1,8 +1,22 @@
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { NextPage } from "next";
 
 const MichaelNwachukwuProfile: NextPage = () => {
+  const links = [
+    { href: "https://github.com/Michael-Nwachukwu", src: "/michaelNwachukwu-images/github.svg", alt: "github" },
+    {
+      href: "https://www.instagram.com/bldn.work/",
+      src: "/michaelNwachukwu-images/instagram.svg",
+      alt: "instagram logo",
+    },
+    { href: "https://twitter.com/__MrNwachukwu", src: "/michaelNwachukwu-images/x.svg", alt: "twitter logo" },
+    {
+      href: "https://www.linkedin.com/in/nwachukwu-michael-b6b8261a2/",
+      src: "/michaelNwachukwu-images/linkedin.svg",
+      alt: "linkedin",
+    },
+  ];
   return (
     <main className="flex max-h-screen justify-center items-center h-full w-full pt-16">
       <div className="flex flex-col items-center gap-2 max-w-xl">
@@ -21,40 +35,17 @@ const MichaelNwachukwuProfile: NextPage = () => {
           and learning along the way.
         </p>
         <div className="inline-flex items-center gap-4">
-          <a
-            href="https://github.com/Michael-Nwachukwu"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary btn-md rounded-full"
-          >
-            <Image src={"/github.svg"} alt="github" width={20} height={20} />
-          </a>
-          <a
-            href="https://www.instagram.com/bldn.work/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary btn-md rounded-full"
-          >
-            <Image src={"/instagram.svg"} alt="instagram logo" width={20} height={20} />
-          </a>
-
-          <a
-            href="https://twitter.com/__MrNwachukwu"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary btn-md rounded-full"
-          >
-            <Image src={"/x.svg"} alt="x/twitter logo" width={20} height={20} />
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/nwachukwu-michael-b6b8261a2/"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary btn-md rounded-full"
-          >
-            <Image src={"/linkedin.svg"} alt="linkedin" width={20} height={20} />
-          </a>
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary btn-md rounded-full"
+            >
+              <Image src={link.src} alt={link.alt} width={20} height={20} />
+            </Link>
+          ))}
         </div>
       </div>
     </main>
