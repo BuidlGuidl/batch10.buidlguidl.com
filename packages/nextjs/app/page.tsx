@@ -15,8 +15,12 @@ const Home: NextPage = () => {
           </h1>
           <p className="text-center text-lg">Get started by taking a look at your batch GitHub repository.</p>
           <p className="text-lg flex gap-2 justify-center">
-            <span className="font-bold">Checked in builders count:</span>
-            <span>To Be Implemented</span>
+            <span className="font-bold">
+              Checked-in builders{" "}
+              <a href="/builders" className="link">
+                page
+              </a>
+            </span>
           </p>
         </div>
 
