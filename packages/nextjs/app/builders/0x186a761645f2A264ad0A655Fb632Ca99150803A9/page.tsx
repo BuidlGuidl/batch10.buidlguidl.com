@@ -8,7 +8,7 @@ const socialLinks = [
   { name: "Twitter", url: "https://x.com/Icon_70" },
 ];
 
-const LukmansPage: NextPage = () => {
+const lukmansPage: NextPage = () => {
   return (
     <div className="min-h-screen bg-base-200 py-12 px-4 sm:px-6 lg:px-8">
       <main className="max-w-2xl mx-auto">
@@ -16,7 +16,7 @@ const LukmansPage: NextPage = () => {
           <header className="flex flex-col sm:flex-row items-center mb-8 p-6">
             <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg mb-4 sm:mb-0 sm:mr-8">
               <Image
-                src="/Images/LukmansAvater.jpeg"
+                src="/lukmansImages/lukmansAvater.jpeg"
                 alt="Lukman"
                 width={100}
                 height={100}
@@ -66,4 +66,4 @@ const LukmansPage: NextPage = () => {
   );
 };
 
-export default LukmansPage;
+export default lukmansPage;
