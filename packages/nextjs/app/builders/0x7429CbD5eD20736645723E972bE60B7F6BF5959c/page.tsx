@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
+import type { NextPage } from "next";
 
-const DevvMichaelProfile = dynamic(() => import("./_components/DevvMichaelProfile"), { ssr: false });
+const DevvMichaelProfile: NextPage = dynamic(() => import("./_components/DevvMichaelProfile"), { ssr: false });
 
 export default DevvMichaelProfile;
