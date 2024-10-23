@@ -15,32 +15,6 @@ const Home: NextPage = () => {
     functionName: "checkedInCounter",
   });
 
-  const renderCheckedInCounterSection = () => {
-    if (contractLoading) {
-      return (
-        <div className="animate-pulse">
-          <div className="h-6 bg-gray-200 rounded w-48 mb-4"></div>
-          <div className="h-4 bg-gray-200 rounded w-24"></div>
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div className="p-4 rounded-lg bg-red-100 text-red-700" role="alert">
-          <p>Error fetching contract data: {error.message}</p>
-        </div>
-      );
-    }
-
-    return (
-      <p className="text-lg flex gap-2 justify-center">
-        <span className="font-bold">Checked in builders count:</span>
-        <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
-      </p>
-    );
-  };
-
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -50,7 +24,23 @@ const Home: NextPage = () => {
             <span className="block text-4xl font-bold">Batch 10</span>
           </h1>
           <p className="text-center text-lg">Get started by taking a look at your batch GitHub repository.</p>
-          {renderCheckedInCounterSection()}
+
+          {error ? (
+            <div className="p-4 rounded-lg bg-red-100 text-red-700" role="alert">
+              <p>Error fetching contract data: {error.message}</p>
+            </div>
+          ) : (
+            <p className="text-lg flex gap-2 justify-center">
+              <span className="font-bold">Checked in builders count:</span>
+              {contractLoading ? (
+                <span className="animate-pulse">
+                  <div className="h-6 bg-gray-200 rounded w-12"></div>
+                </span>
+              ) : (
+                <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
+              )}
+            </p>
+          )}
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
