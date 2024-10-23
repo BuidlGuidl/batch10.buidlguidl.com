@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { NextPage } from "next";
 import { FaDiscord, FaGithub, FaTelegram } from "react-icons/fa";
+import { Address } from "~~/components/scaffold-eth";
 
 const PeterProfile: NextPage = () => {
   const socials = [
@@ -40,7 +41,6 @@ const PeterProfile: NextPage = () => {
               I transitioned into freelancing. Now, I’m diving into web3 and smart contract development, which I’m
               really passionate about.
             </p>
-            <p>Address: 0x26BfbD8ED2B302ec2c2B6f063C4caF7abcB062e0</p>
           </div>
           <div className="flex justify-center space-x-4">
             {socials.map((social, id) => (
@@ -55,6 +55,7 @@ const PeterProfile: NextPage = () => {
               </a>
             ))}
           </div>
+          <Address address="0x26BfbD8ED2B302ec2c2B6f063C4caF7abcB062e0" />
         </div>
       </div>
     </div>
