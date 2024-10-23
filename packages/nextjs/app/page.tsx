@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               <p>Error fetching contract data: {error.message}</p>
             </div>
           ) : (
-            <p className="text-lg flex gap-2 justify-center">
+            <div className="text-lg flex gap-2 justify-center">
               <span className="font-bold">Checked in builders count:</span>
               {contractLoading ? (
                 <span className="animate-pulse">
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
               ) : (
                 <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
               )}
-            </p>
+            </div>
           )}
         </div>
 
