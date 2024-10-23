@@ -37,9 +37,14 @@ const PeterProfile: NextPage = () => {
           <div className="text-center">
             <p>Fullstack Developer</p>
             <p>
-              I studied computer science at university and started working in web development. After gaining experience,
-              I transitioned into freelancing. Now, I’m diving into web3 and smart contract development, which I’m
-              really passionate about.
+              Hello! I&apos;m Peter.
+              <br />
+              My journey into <span className="font-bold">web3</span> began with studying computer science at
+              university, followed by a stint in web development.
+              <br />
+              Currently, I&apos;m transitioning into <span className="font-bold">web3</span> and{" "}
+              <span className="font-bold">smart contract development</span>, which I&apos;m really{" "}
+              <span className="font-bold">passionate</span> about
             </p>
           </div>
           <div className="flex justify-center space-x-4">
