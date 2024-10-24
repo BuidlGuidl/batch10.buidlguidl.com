@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Socials from "./components/Socials";
 import type { NextPage } from "next";
@@ -10,8 +9,6 @@ import { Address } from "~~/components/scaffold-eth";
 const builderAddress = "0xe9Ad7D1C2069E0Fa9b5852Adc77C9196651BB8b8";
 
 const KrvvsProfile: NextPage = () => {
-  const [ensAvatar, setEnsAvatar] = useState<string | null>();
-
   const { data: fetchedEns } = useEnsName({
     address: builderAddress,
     chainId: 1,
@@ -22,21 +19,16 @@ const KrvvsProfile: NextPage = () => {
     chainId: 1,
   });
 
-  useEffect(() => {
-    setEnsAvatar(fetchedEnsAvatar);
-  }, [fetchedEnsAvatar]);
-
   return (
     <div className="flex justify-center">
       <div className="w-[800px] min-w-[200px] max-w-[800px] p-[30px] m-[50px] bg-base-200 shadow-2xl rounded-2xl flex flex-col gap-6 items-center">
         <div className="avatar">
           <div className="w-40 rounded-full">
             <Image
-              src={ensAvatar || "https://avatars.githubusercontent.com/u/141290516?v=4"}
+              src={fetchedEnsAvatar || "https://avatars.githubusercontent.com/u/141290516?v=4"}
               alt="Builder's Avatar"
               height={100}
               width={100}
-              objectFit="cover"
             />
           </div>
         </div>
