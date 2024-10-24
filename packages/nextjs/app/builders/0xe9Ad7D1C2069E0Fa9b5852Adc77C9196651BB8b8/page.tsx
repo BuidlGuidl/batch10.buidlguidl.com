@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Socials from "./components/Socials";
 import type { NextPage } from "next";
 import { useEnsAvatar, useEnsName } from "wagmi";
@@ -25,11 +24,10 @@ const KrvvsProfile: NextPage = () => {
       <div className="w-[800px] min-w-[200px] max-w-[800px] p-[30px] m-[50px] bg-base-200 shadow-2xl rounded-2xl flex flex-col gap-6 items-center">
         <div className="avatar">
           <div className="w-40 rounded-full">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={fetchedEnsAvatar || "https://avatars.githubusercontent.com/u/141290516?v=4"}
               alt="Builder's Avatar"
-              height={100}
-              width={100}
             />
           </div>
         </div>
