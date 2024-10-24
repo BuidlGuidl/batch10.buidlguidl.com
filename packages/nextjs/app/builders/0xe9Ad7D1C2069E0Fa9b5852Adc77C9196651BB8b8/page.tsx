@@ -7,6 +7,7 @@ import { useEnsAvatar, useEnsName } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
 
 const builderAddress = "0xe9Ad7D1C2069E0Fa9b5852Adc77C9196651BB8b8";
+const shortBuilderAddress = builderAddress.slice(0, 6);
 
 const KrvvsProfile: NextPage = () => {
   const { data: fetchedEns } = useEnsName({
@@ -33,7 +34,7 @@ const KrvvsProfile: NextPage = () => {
           </div>
         </div>
         <div className="flex flex-col items-center gap-4">
-          <div className="card-title">{fetchedEns}</div>
+          <div className="card-title">{fetchedEns || shortBuilderAddress}</div>
           <Socials />
         </div>
 
