@@ -24,21 +24,19 @@ const Builders: NextPage = () => {
     const fetchBuilders = async () => {
       if (!events) return;
       const builders = await Promise.all(
-        events
-          .map(async event => {
-            const address = event.args.builder;
-            // Check if the builder has a personal page
-            const resp = await fetch(`builders/${address}`);
-            if (address)
-              return {
-                address,
-                name: "",
-                hasPersonalPage: resp.status === 200,
-              };
-          })
-          .filter(asd => !!asd),
+        events.map(async event => {
+          const address = event.args.builder;
+          // Check if the builder has a personal page
+          const resp = await fetch(`builders/${address}`);
+          if (address)
+            return {
+              address,
+              name: "",
+              hasPersonalPage: resp.status === 200,
+            };
+        }),
       );
-      setBuilders(builders.filter(asd => !!asd));
+      setBuilders(builders.filter(builder => !!builder));
     };
 
     fetchBuilders().catch(console.error);
@@ -77,8 +75,14 @@ const Builders: NextPage = () => {
                   {builders.map((builder, id) => (
                     <tr key={id} className="items-center">
                       <th>{id + 1}</th>
-                      <td className="underline text-lg">
-                        <a href={`/builders/${builder.address}`}>{builder.name}</a>
+                      <td className="text-lg">
+                        {builder.hasPersonalPage ? (
+                          <a className="underline" href={`/builders/${builder.address}`}>
+                            {builder.name}
+                          </a>
+                        ) : (
+                          <>{builder.name}(Coming soon)</>
+                        )}
                       </td>
                       <td className="flex flex-nowrap items-center gap-1 content-center h-100">
                         <a
