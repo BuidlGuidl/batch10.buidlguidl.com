@@ -2,18 +2,45 @@
 
 import Link from "next/link";
 import type { NextPage } from "next";
+import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 const Home: NextPage = () => {
+  const { address: connectedAddress } = useAccount();
+
   const {
     data: checkedInCounter,
-    error,
-    isLoading: contractLoading,
+    error: counterError,
+    isLoading: counterLoading,
   } = useScaffoldReadContract({
     contractName: "BatchRegistry",
     functionName: "checkedInCounter",
   });
+
+  const {
+    data: isAllowListed,
+    error: allowListError,
+    isLoading: allowListLoading,
+  } = useScaffoldReadContract({
+    contractName: "BatchRegistry",
+    functionName: "allowList",
+    args: [connectedAddress],
+  });
+
+  const {
+    data: userContractAddress,
+    error: checkInError,
+    isLoading: checkInLoading,
+  } = useScaffoldReadContract({
+    contractName: "BatchRegistry",
+    functionName: "yourContractAddress",
+    args: [connectedAddress],
+  });
+
+  const error = counterError || allowListError || checkInError;
+  const isLoading = counterLoading || allowListLoading || checkInLoading;
+  const isCheckedIn = userContractAddress && userContractAddress !== "0x0000000000000000000000000000000000000000";
 
   return (
     <>
@@ -30,16 +57,50 @@ const Home: NextPage = () => {
               <p>Error fetching contract data: {error.message}</p>
             </div>
           ) : (
-            <div className="text-lg flex gap-2 justify-center">
-              <span className="font-bold">Checked in builders count:</span>
-              {contractLoading ? (
-                <span className="animate-pulse">
-                  <div className="h-6 bg-gray-200 rounded w-12"></div>
-                </span>
-              ) : (
-                <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
+            <>
+              <div className="text-lg flex gap-2 justify-center mb-4">
+                <span className="font-bold">Checked in builders count:</span>
+                {counterLoading ? (
+                  <span className="animate-pulse">
+                    <div className="h-6 bg-gray-200 rounded w-12"></div>
+                  </span>
+                ) : (
+                  <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
+                )}
+              </div>
+
+              {connectedAddress && (
+                <div className="mt-6 p-4 rounded-lg bg-base-200">
+                  <h2 className="text-xl font-bold mb-3">Your Status</h2>
+                  {isLoading ? (
+                    <div className="space-y-2">
+                      <div className="h-6 bg-gray-200 rounded w-48 animate-pulse" />
+                      <div className="h-6 bg-gray-200 rounded w-36 animate-pulse" />
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-3 h-3 rounded-full ${isAllowListed ? "bg-green-500" : "bg-red-500"}`} />
+                        <span>
+                          {isAllowListed ? "You are a member of Batch 10" : "You are not a member of Batch 10"}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-3 h-3 rounded-full ${isCheckedIn ? "bg-green-500" : "bg-yellow-500"}`} />
+                        <span>
+                          {isCheckedIn
+                            ? `Checked in with contract: ${userContractAddress?.slice(
+                                0,
+                                6,
+                              )}...${userContractAddress?.slice(-4)}`
+                            : "Not checked in yet"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               )}
-            </div>
+            </>
           )}
         </div>
 
