@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { useScaffoldEventHistory, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 
 type Builder = {
   name: string;
@@ -42,12 +42,6 @@ const Builders: NextPage = () => {
     fetchBuilders().catch(console.error);
   }, [events]);
 
-  const { data: checkedInCounter } = useScaffoldReadContract({
-    contractName: "BatchRegistry",
-    functionName: "checkedInCounter",
-  });
-  console.log(checkedInCounter);
-
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -55,9 +49,6 @@ const Builders: NextPage = () => {
           <h1 className="text-center">
             <span className="block text-4xl font-bold">Builders</span>
           </h1>
-          <p className="text-lg flex gap-2 justify-center">
-            <span className="font-bold">Checked in builders count: {Number(checkedInCounter)}</span>
-          </p>
         </div>
 
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
