@@ -2,8 +2,13 @@ import Link from "next/link";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-const Socials = () => {
-  const links = [
+interface SocialLink {
+  href: string;
+  icon: JSX.Element;
+}
+
+const Socials: React.FC = () => {
+  const links: SocialLink[] = [
     { href: "https://github.com/Michael-Nwachukwu", icon: <FaGithub /> },
     {
       href: "https://www.instagram.com/bldn.work/",
