@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { NextPage } from "next";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
@@ -68,21 +69,21 @@ const Builders: NextPage = () => {
                       <th>{id + 1}</th>
                       <td className="text-lg">
                         {builder.hasPersonalPage ? (
-                          <a className="underline" href={`/builders/${builder.address}`}>
+                          <Link className="underline" href={`/builders/${builder.address}`}>
                             {builder.name}
-                          </a>
+                          </Link>
                         ) : (
                           <>{builder.name}(Coming soon)</>
                         )}
                       </td>
                       <td className="flex flex-nowrap items-center gap-1 content-center h-100">
-                        <a
+                        <Link
                           href={`https://optimistic.etherscan.io/address/${builder.address}`}
                           target="_blank"
                           className="underline"
                         >
                           {builder.address}
-                        </a>
+                        </Link>
                         <FaExternalLinkAlt size="12" />
                       </td>
                     </tr>
