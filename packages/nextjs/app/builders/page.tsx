@@ -1,38 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldEventHistory, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 type Builder = {
   name: string;
-  address: `0x${string}`;
+  address: string;
+  hasPersonalPage: boolean;
 };
 
 const Builders: NextPage = () => {
-  const [builders] = useState([
-    {
-      name: "Abdulyekeen Lukman",
-      address: "0x186a761645f2A264ad0A655Fb632Ca99150803A9",
-    },
-    {
-      name: "Favvie Kenpachi",
-      address: "0x21Be2291f91EA2A1d1EB65DbBea2dA8886Ad7a3E",
-    },
-    {
-      name: "Bello Abraham",
-      address: "0x28482B1279E442f49eE76351801232D58f341CB9",
-    },
-    {
-      name: "Samson Aderonmu",
-      address: "0x62CeF3Ca8b52a9C69a17236CA2c56Cdb7a383E8e",
-    },
-    {
-      name: "Michael Ojekunle",
-      address: "0x7429CbD5eD20736645723E972bE60B7F6BF5959c",
-    },
-  ] as Builder[]);
+  const [builders, setBuilders] = useState([] as Builder[]);
+
+  const { data: events } = useScaffoldEventHistory({
+    contractName: "BatchRegistry",
+    eventName: "CheckedIn",
+    fromBlock: 126461494n,
+  });
+
+  useEffect(() => {
+    const fetchBuilders = async () => {
+      if (!events) return;
+      const builders = await Promise.all(
+        events
+          .map(async event => {
+            const address = event.args.builder;
+            // Check if the builder has a personal page
+            const resp = await fetch(`builders/${address}`);
+            if (address)
+              return {
+                address,
+                name: "",
+                hasPersonalPage: resp.status === 200,
+              };
+          })
+          .filter(asd => !!asd),
+      );
+      setBuilders(builders.filter(asd => !!asd));
+    };
+
+    fetchBuilders().catch(console.error);
+  }, [events]);
 
   const { data: checkedInCounter } = useScaffoldReadContract({
     contractName: "BatchRegistry",
