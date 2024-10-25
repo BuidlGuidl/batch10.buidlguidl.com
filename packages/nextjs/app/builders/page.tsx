@@ -10,7 +10,7 @@ type Builder = {
   address: `0x${string}`;
 };
 
-const Home: NextPage = () => {
+const Builders: NextPage = () => {
   const [builders] = useState([
     {
       name: "Abdulyekeen Lukman",
@@ -92,4 +92,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Builders;
