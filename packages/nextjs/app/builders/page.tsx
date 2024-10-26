@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { BUILDERS } from "./constants";
 import type { NextPage } from "next";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 
 type Builder = {
@@ -32,7 +33,7 @@ const Builders: NextPage = () => {
           if (address)
             return {
               address,
-              name: "",
+              name: BUILDERS[address.toLowerCase()],
               hasPersonalPage: resp.status === 200,
             };
         }),
@@ -59,14 +60,17 @@ const Builders: NextPage = () => {
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Name</th>
-                    <th>Address</th>
+                    <th>ENS or Address</th>
+                    <th>Builder Profile</th>
                   </tr>
                 </thead>
                 <tbody>
                   {builders.map((builder, id) => (
                     <tr key={id} className="items-center">
                       <th>{id + 1}</th>
+                      <td className="text-lg">
+                        <Address address={builder.address} />
+                      </td>
                       <td className="text-lg">
                         {builder.hasPersonalPage ? (
                           <Link className="underline" href={`/builders/${builder.address}`}>
@@ -75,16 +79,6 @@ const Builders: NextPage = () => {
                         ) : (
                           <>{builder.name}(Coming soon)</>
                         )}
-                      </td>
-                      <td className="flex flex-nowrap items-center gap-1 content-center h-100">
-                        <Link
-                          href={`https://optimistic.etherscan.io/address/${builder.address}`}
-                          target="_blank"
-                          className="underline"
-                        >
-                          {builder.address}
-                        </Link>
-                        <FaExternalLinkAlt size="12" />
                       </td>
                     </tr>
                   ))}
