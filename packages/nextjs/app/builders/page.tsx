@@ -28,11 +28,11 @@ const Builders: NextPage = () => {
 
       // Filter out duplicate addresses
       const filteredAddresses: string[] = [];
-      events
-        .map(event => event.args.builder as string)
-        .forEach(address => {
-          if (!filteredAddresses.find(addr => address === addr)) filteredAddresses.push(address);
-        });
+      events.forEach(event => {
+        const address = event.args.builder;
+        if (!address) return;
+        if (!filteredAddresses.find(addr => address === addr)) filteredAddresses.push(address);
+      });
 
       const builders = await Promise.all(
         filteredAddresses.map(async address => {
