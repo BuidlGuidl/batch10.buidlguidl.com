@@ -38,7 +38,11 @@ const Builders: NextPage = () => {
             };
         }),
       );
-      setBuilders(builders.filter(builder => !!builder));
+      setBuilders(
+        builders
+          .filter(builder => !!builder)
+          .sort((a, b) => +(b.hasPersonalPage === true) - +(a.hasPersonalPage === true)),
+      );
     };
 
     fetchBuilders().catch(console.error);
