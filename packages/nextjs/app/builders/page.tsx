@@ -25,9 +25,17 @@ const Builders: NextPage = () => {
   useEffect(() => {
     const fetchBuilders = async () => {
       if (!events) return;
+
+      // Filter out duplicate addresses
+      const filteredAddresses: string[] = [];
+      events
+        .map(event => event.args.builder as string)
+        .forEach(address => {
+          if (!filteredAddresses.find(addr => address === addr)) filteredAddresses.push(address);
+        });
+
       const builders = await Promise.all(
-        events.map(async event => {
-          const address = event.args.builder;
+        filteredAddresses.map(async address => {
           // Check if the builder has a personal page
           const resp = await fetch(`builders/${address}`);
           if (address)
@@ -41,6 +49,7 @@ const Builders: NextPage = () => {
       setBuilders(
         builders
           .filter(builder => !!builder)
+          // Sort by personal apge availability
           .sort((a, b) => +(b.hasPersonalPage === true) - +(a.hasPersonalPage === true)),
       );
     };
@@ -65,7 +74,7 @@ const Builders: NextPage = () => {
                   <tr>
                     <th></th>
                     <th>ENS or Address</th>
-                    <th>Builder Profile</th>
+                    <th>Builder Page</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,10 +87,10 @@ const Builders: NextPage = () => {
                       <td className="text-lg">
                         {builder.hasPersonalPage ? (
                           <Link className="underline" href={`/builders/${builder.address}`}>
-                            {builder.name}
+                            {builder.name ? `${builder.name}'s Builder Page` : "Builder Page"}
                           </Link>
                         ) : (
-                          <>{builder.name}(Coming soon)</>
+                          <>Not available</>
                         )}
                       </td>
                     </tr>
