@@ -2182,6 +2182,7 @@ __metadata:
     eslint-config-next: ^14.0.4
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
+    lucide-react: ^0.453.0
     next: ^14.2.11
     next-nprogress-bar: ^2.3.13
     next-themes: ^0.3.0
@@ -2192,6 +2193,7 @@ __metadata:
     react-copy-to-clipboard: ^5.1.0
     react-dom: ^18.3.1
     react-hot-toast: ^2.4.0
+    react-icons: ^5.3.0
     tailwindcss: ^3.4.11
     type-fest: ^4.6.0
     typescript: 5.5.3
@@ -9367,6 +9369,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.453.0":
+  version: 0.453.0
+  resolution: "lucide-react@npm:0.453.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+  checksum: 1a48153fd9338266d8bb14c735bfe8bfb046c505ab91421586cbae0a8ac1924536e813d430d1f91c883bb4ea67f0664bfca273f58e478438f0ad8f8f09fced76
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^3.1.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -11311,6 +11322,15 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 3e337816db574782454bf09c63a8aca546bf9c5be3f83d0494d24bdcfd97ca2db64d4c151c4ab0184d2342d7a7226403e6812e70caf03c8b55a07787bb4ad0f2
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "react-icons@npm:5.3.0"
+  peerDependencies:
+    react: "*"
+  checksum: 3aa5f50e05aafc6d31e0d995fe0d98560069aa88717b24ce8aaa082a7e7b20ca95e1e19d847ed6e52d658a5a30e15826af20d7554bf993a743edd55586db62e3
   languageName: node
   linkType: hard
 
