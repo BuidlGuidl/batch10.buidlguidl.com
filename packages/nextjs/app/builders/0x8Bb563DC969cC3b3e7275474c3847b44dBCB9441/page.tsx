@@ -45,7 +45,7 @@ const MichaelEsenwa: NextPage = () => {
           </div>
 
           <div className="mt-4">
-            <h4 className="">Address: 0x8Bb563DC969cC3b3e7275474c3847b44dBCB9441</h4>
+            <p className="text-xs md:text-base">Address: 0x8Bb563DC969cC3b3e7275474c3847b44dBCB9441</p>
             <h4 className="mt-8">📫 How to reach me:</h4>
             <div className="flex items-center gap-3">
               {contactLink.map((_, i) => (
