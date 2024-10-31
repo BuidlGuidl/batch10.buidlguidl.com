@@ -193,11 +193,11 @@ const Home = () => {
             </div>
 
             <StatusSection
-              connectedAddress={connectedAddress!}
-              isAllowListed={isAllowListed!}
+              connectedAddress={connectedAddress as string}
+              isAllowListed={isAllowListed as boolean}
               isCheckedIn={isCheckedIn as boolean}
-              userContractAddress={userContractAddress!}
-              isLoading={isLoading!}
+              userContractAddress={userContractAddress as string}
+              isLoading={isLoading as boolean}
             />
           </div>
         )}
