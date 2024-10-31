@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
@@ -130,7 +131,7 @@ const StatusSection = ({
   );
 };
 
-const Home = () => {
+const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
 
   const {
