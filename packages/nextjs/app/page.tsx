@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 interface Props {
@@ -12,15 +12,13 @@ interface Props {
   className?: string;
 }
 
-interface StarknetReact {
+interface BatchUserStatus {
   connectedAddress: string;
   isAllowListed: boolean;
   isCheckedIn: boolean;
-  userContractAddress: string;
   isLoading: boolean;
 }
 
-// Alert Components
 const Alert = ({ children, className = "" }: Props) => (
   <div className={`rounded-lg border p-4 mt-6 max-w-md mx-auto ${className}`}>{children}</div>
 );
@@ -31,7 +29,6 @@ const AlertTitle = ({ children }: Props) => (
 
 const AlertDescription = ({ children }: Props) => <div className="text-sm opacity-70">{children}</div>;
 
-// Card Components
 const Card = ({ children, className = "" }: Props) => (
   <div className={`rounded-lg border bg-card text-card-foreground shadow-sm mt-6 max-w-md mx-auto ${className}`}>
     {children}
@@ -48,14 +45,7 @@ const CardTitle = ({ children }: Props) => (
 
 const CardContent = ({ children, className = "" }: Props) => <div className={`p-6 pt-0 ${className}`}>{children}</div>;
 
-// Status Component
-const StatusSection = ({
-  connectedAddress,
-  isAllowListed,
-  isCheckedIn,
-  userContractAddress,
-  isLoading,
-}: StarknetReact) => {
+const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading }: BatchUserStatus) => {
   if (isLoading) {
     return (
       <Card>
@@ -124,7 +114,7 @@ const StatusSection = ({
       </CardHeader>
       <CardContent>
         <p className="text-sm opacity-70">
-          Active with contract: {userContractAddress?.slice(0, 6)}...{userContractAddress?.slice(-4)}
+          Active with wallet address: <Address address={connectedAddress} />
         </p>
       </CardContent>
     </Card>
@@ -197,7 +187,6 @@ const Home: NextPage = () => {
               connectedAddress={connectedAddress as string}
               isAllowListed={isAllowListed as boolean}
               isCheckedIn={isCheckedIn as boolean}
-              userContractAddress={userContractAddress as string}
               isLoading={isLoading as boolean}
             />
           </div>
