@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BUILDERS } from "./constants";
 import type { NextPage } from "next";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 
 type Builder = {
-  name: string;
   address: string;
   hasPersonalPage: boolean;
 };
@@ -41,7 +39,6 @@ const Builders: NextPage = () => {
           if (address)
             return {
               address,
-              name: BUILDERS[address.toLowerCase()],
               hasPersonalPage: resp.status === 200,
             };
         }),
@@ -87,7 +84,7 @@ const Builders: NextPage = () => {
                       <td className="text-lg">
                         {builder.hasPersonalPage ? (
                           <Link className="underline" href={`/builders/${builder.address}`}>
-                            {builder.name ? `${builder.name}'s Builder Page` : "Builder Page"}
+                            Builder Page
                           </Link>
                         ) : (
                           <>Not available</>
