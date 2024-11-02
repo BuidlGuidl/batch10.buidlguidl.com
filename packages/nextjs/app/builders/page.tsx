@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { Address } from "~~/components/scaffold-eth";
@@ -13,12 +13,20 @@ type Builder = {
 
 const Builders: NextPage = () => {
   const [builders, setBuilders] = useState([] as Builder[]);
+  const [isLoading, setIsLoading] = useState(true);
+  const elementRef = useRef(null);
 
   const { data: events } = useScaffoldEventHistory({
     contractName: "BatchRegistry",
     eventName: "CheckedIn",
     fromBlock: 126461494n,
   });
+
+  useEffect(() => {
+    if (elementRef.current) {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchBuilders = async () => {
@@ -56,7 +64,7 @@ const Builders: NextPage = () => {
 
   return (
     <>
-      <div className="flex items-center flex-col flex-grow pt-10">
+      <div className="flex items-center flex-col flex-grow pt-10" ref={elementRef}>
         <div className="px-5">
           <h1 className="text-center">
             <span className="block text-4xl font-bold">Builders</span>
@@ -66,34 +74,38 @@ const Builders: NextPage = () => {
         <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
           <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
             <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>ENS or Address</th>
-                    <th>Builder Page</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {builders.map((builder, id) => (
-                    <tr key={id} className="items-center">
-                      <th>{id + 1}</th>
-                      <td className="text-lg">
-                        <Address address={builder.address} />
-                      </td>
-                      <td className="text-lg">
-                        {builder.hasPersonalPage ? (
-                          <Link className="underline" href={`/builders/${builder.address}`}>
-                            Builder Page
-                          </Link>
-                        ) : (
-                          <>Not available</>
-                        )}
-                      </td>
+              {isLoading ? (
+                <span className="animate-pulse text-xl">Loading builder pages</span>
+              ) : (
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>ENS or Address</th>
+                      <th>Builder Page</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {builders.map((builder, id) => (
+                      <tr key={id} className="items-center">
+                        <th>{id + 1}</th>
+                        <td className="text-lg">
+                          <Address address={builder.address} />
+                        </td>
+                        <td className="text-lg">
+                          {builder.hasPersonalPage ? (
+                            <Link className="underline" href={`/builders/${builder.address}`}>
+                              Builder Page
+                            </Link>
+                          ) : (
+                            <>Not available</>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </div>
         </div>
