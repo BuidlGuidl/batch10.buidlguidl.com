@@ -113,9 +113,9 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
         </div>
       </CardHeader>
       <CardContent>
-        <p className="text-sm opacity-70">
+        <div className="text-sm opacity-70">
           Active with wallet address: <Address address={connectedAddress} />
-        </p>
+        </div>
       </CardContent>
     </Card>
   );
