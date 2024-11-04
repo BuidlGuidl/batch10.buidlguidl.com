@@ -58,7 +58,7 @@ export default function Page({ builderProfiles }: { builderProfiles: string[] })
     };
 
     fetchBuilders().catch(console.error);
-  }, [events]);
+  }, [events, builderProfiles]);
 
   return (
     <div>
