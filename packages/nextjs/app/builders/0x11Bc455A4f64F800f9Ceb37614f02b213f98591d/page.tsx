@@ -3,36 +3,37 @@ import { backgroundPattern } from "./backgroundPattern";
 import { NextPage } from "next";
 import { FaDiscord, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Address } from "~~/components/scaffold-eth";
+
+const socialLinks = [
+  {
+    href: "https://github.com/emarc99",
+    label: "Github",
+    icon: <FaGithub size={24} />,
+  },
+  {
+    href: "https://x.com/emmanex94",
+    label: "Twitter",
+    icon: <FaXTwitter size={24} />,
+  },
+  {
+    href: "https://www.linkedin.com/in/emmanuel-aroso-002783169/",
+    label: "LinkedIn",
+    icon: <FaLinkedin size={24} />,
+  },
+  {
+    href: "https://discordapp.com/users/emarc99", // Can be your Discord username or server invite
+    label: "Discord",
+    icon: <FaDiscord size={24} />,
+  },
+  {
+    href: "https://t.me/emarc99",
+    label: "Telegram",
+    icon: <FaTelegram size={24} />,
+  },
+];
 
 const EmarcProfile: NextPage = () => {
-  const socialLinks = [
-    {
-      href: "https://github.com/emarc99",
-      label: "Github",
-      icon: <FaGithub size={24} />,
-    },
-    {
-      href: "https://x.com/emmanex94",
-      label: "Twitter",
-      icon: <FaXTwitter size={24} />,
-    },
-    {
-      href: "https://www.linkedin.com/in/emmanuel-aroso-002783169/",
-      label: "LinkedIn",
-      icon: <FaLinkedin size={24} />,
-    },
-    {
-      href: "https://discord.com/emarc99", // Can be your Discord username or server invite
-      label: "Discord",
-      icon: <FaDiscord size={24} />,
-    },
-    {
-      href: "https://t.me/emarc99",
-      label: "Telegram",
-      icon: <FaTelegram size={24} />,
-    },
-  ];
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full" style={backgroundPattern}>
       <div className="card w-128 bg-[#EE1530]/80 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
@@ -56,7 +57,7 @@ const EmarcProfile: NextPage = () => {
             opportunities and contributing to interesting projects.
           </p>
           <h2 className="fmt-2 leading-relaxed max-w-md opacity-90 hover:opacity-100 transition-opacity duration-300">
-            ENS/Wallet Address:<span className="font-bold text-2xl"> emarc.eth</span>
+            <Address address="emarc.eth" />
           </h2>
           <div className="card-actions justify-center mt-6 space-x-4">
             {socialLinks.map(link => (
