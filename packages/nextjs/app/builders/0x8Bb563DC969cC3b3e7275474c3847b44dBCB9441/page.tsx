@@ -13,7 +13,7 @@ const MichaelEsenwa: NextPage = () => {
               Hi there, I am Kachukwu Michael Esenwa{" "}
             </h1>
             <div className="h-[100px] w-[100px] lg:w-[300px] lg:h-[300px] shrink-0 !overflow-hidden rounded-full relative lg:hidden">
-              <Image fill src="https://avatars.githubusercontent.com/u/42065630?v=4" alt="avatar" />
+              <Image fill src="https://avatars.githubusercontent.com/u/42065630?v=5" alt="avatar" />
             </div>
           </div>
           <hr className="mt-2 border-gray-500" />
@@ -42,7 +42,7 @@ const MichaelEsenwa: NextPage = () => {
           </div>
         </div>
         <div className="h-[100px] w-[100px] lg:w-[300px] lg:h-[300px] shrink-0 !overflow-hidden rounded-full relative hidden lg:block">
-          <Image fill src="https://avatars.githubusercontent.com/u/42065630?v=4" alt="avatar" />
+          <Image fill src="https://avatars.githubusercontent.com/u/42065630?v=5" alt="avatar" />
         </div>
       </div>
     </div>
