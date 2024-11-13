@@ -57,7 +57,7 @@ const EmarcProfile: NextPage = () => {
             opportunities and contributing to interesting projects.
           </p>
           <h2 className="fmt-2 leading-relaxed max-w-md opacity-90 hover:opacity-100 transition-opacity duration-300">
-            <Address address="emarc.eth" />
+            <Address address="0x11Bc455A4f64F800f9Ceb37614f02b213f98591d" />
           </h2>
           <div className="card-actions justify-center mt-6 space-x-4">
             {socialLinks.map(link => (
