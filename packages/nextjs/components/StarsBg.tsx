@@ -19,6 +19,24 @@ interface StarBackgroundProps {
   className?: string;
 }
 
+const createStar = (
+  width: number,
+  height: number,
+  allStarsTwinkle: boolean,
+  twinkleProbability: number,
+  minTwinkleSpeed: number,
+  maxTwinkleSpeed: number,
+): StarProps => {
+  const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
+  return {
+    x: Math.random() * width,
+    y: Math.random() * height,
+    radius: Math.random() * 0.05 + 0.5,
+    opacity: Math.random() * 0.5 + 0.5,
+    twinkleSpeed: shouldTwinkle ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed) : null,
+  };
+};
+
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
   starDensity = 0.00015,
   allStarsTwinkle = true,
@@ -33,21 +51,12 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     (width: number, height: number): StarProps[] => {
       const area = width * height;
       const numStars = Math.floor(area * starDensity);
-      return Array.from({ length: numStars }, () => createStar(width, height));
+      return Array.from({ length: numStars }, () =>
+        createStar(width, height, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed),
+      );
     },
     [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed],
   );
-
-  const createStar = (width: number, height: number): StarProps => {
-    const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
-    return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 0.05 + 0.5,
-      opacity: Math.random() * 0.5 + 0.5,
-      twinkleSpeed: shouldTwinkle ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed) : null,
-    };
-  };
 
   useEffect(() => {
     const updateStars = () => {
