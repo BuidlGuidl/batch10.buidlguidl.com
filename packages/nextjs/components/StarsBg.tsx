@@ -19,30 +19,13 @@ interface StarBackgroundProps {
   className?: string;
 }
 
-const createStar = (
-  width: number,
-  height: number,
-  allStarsTwinkle: boolean,
-  twinkleProbability: number,
-  minTwinkleSpeed: number,
-  maxTwinkleSpeed: number,
-): StarProps => {
-  const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
-  return {
-    x: Math.random() * width,
-    y: Math.random() * height,
-    radius: Math.random() * 0.05 + 0.5,
-    opacity: Math.random() * 0.5 + 0.5,
-    twinkleSpeed: shouldTwinkle ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed) : null,
-  };
-};
-
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
   starDensity = 0.00015,
   allStarsTwinkle = true,
   twinkleProbability = 0.7,
   minTwinkleSpeed = 0.5,
   maxTwinkleSpeed = 1,
+  className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
   const canvasRef: RefObject<HTMLCanvasElement> = useRef<HTMLCanvasElement>(null);
@@ -51,9 +34,16 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     (width: number, height: number): StarProps[] => {
       const area = width * height;
       const numStars = Math.floor(area * starDensity);
-      return Array.from({ length: numStars }, () =>
-        createStar(width, height, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed),
-      );
+      return Array.from({ length: numStars }, () => {
+        const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 0.05 + 0.5,
+          opacity: Math.random() * 0.5 + 0.5,
+          twinkleSpeed: shouldTwinkle ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed) : null,
+        };
+      });
     },
     [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed],
   );
@@ -98,7 +88,16 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(star => drawStar(ctx, star));
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fill();
+
+        if (star.twinkleSpeed !== null) {
+          star.opacity = 0.5 + Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5);
+        }
+      });
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -110,16 +109,5 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     };
   }, [stars]);
 
-  const drawStar = (ctx: CanvasRenderingContext2D, star: StarProps) => {
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-    ctx.fill();
-
-    if (star.twinkleSpeed !== null) {
-      star.opacity = 0.5 + Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5);
-    }
-  };
-
-  return <canvas ref={canvasRef} className={"min-h-full w-full absolute inset-0 !bg-black"} />;
+  return <canvas ref={canvasRef} className={`h-full w-full absolute inset-0 !bg-black ${className}`} />;
 };

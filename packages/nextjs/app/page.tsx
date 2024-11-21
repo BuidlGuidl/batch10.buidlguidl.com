@@ -34,18 +34,20 @@ const images = [
   "/emarc-pixels.jpg",
   "/superior.jpeg",
   "/cherry/cherrypfp.png",
-  "https://avatars.githubusercontent.com/u/141290516?v=4",
+  "https://avatars.githubusercontent.com/u/141290516?v=3",
 ];
 
 const Alert = ({ children, className = "" }: Props) => (
   <div className={`rounded-lg border p-4 mt-6 max-w-md mx-auto ${className}`}>{children}</div>
 );
 
-const AlertTitle = ({ children }: Props) => (
-  <h5 className="mb-1 font-medium leading-none tracking-tight">{children}</h5>
+const AlertTitle = ({ children, className }: Props) => (
+  <h5 className={`mb-1 font-medium leading-none tracking-tight ${className}`}>{children}</h5>
 );
 
-const AlertDescription = ({ children }: Props) => <div className="text-sm opacity-70">{children}</div>;
+const AlertDescription = ({ children, className }: Props) => (
+  <div className={`text-sm opacity-70 ${className}`}>{children}</div>
+);
 
 const Card = ({ children, className = "" }: Props) => (
   <div className={`rounded-lg border bg-card text-card-foreground shadow-sm mt-6 max-w-xl mx-auto ${className}`}>
@@ -57,8 +59,8 @@ const CardHeader = ({ children, className = "" }: Props) => (
   <div className={`flex flex-col space-y-1.5 p-6 ${className}`}>{children}</div>
 );
 
-const CardTitle = ({ children }: Props) => (
-  <h3 className="text-xl font-semibold leading-none tracking-tight">{children}</h3>
+const CardTitle = ({ children, className }: Props) => (
+  <h3 className={`text-xl font-semibold leading-none tracking-tight ${className}`}>{children}</h3>
 );
 
 const CardContent = ({ children, className = "" }: Props) => <div className={`p-6 pt-0 ${className}`}>{children}</div>;
@@ -71,7 +73,7 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
           <div className="flex items-center justify-center py-6">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 border-b-2 border-gray-900 rounded-full animate-spin"></div>
-              <p className="text-sm text-muted">Checking your status...</p>
+              <p className="text-sm !text-white dark:text-white">Checking your status...</p>
             </div>
           </div>
         </CardContent>
@@ -82,8 +84,10 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
   if (!connectedAddress) {
     return (
       <Alert className="border-blue-200">
-        <AlertTitle>Connect Your Wallet</AlertTitle>
-        <AlertDescription>Please connect your wallet to view your Batch 10 status</AlertDescription>
+        <AlertTitle className="!text-white dark:!text-white">Connect Your Wallet</AlertTitle>
+        <AlertDescription className="!text-white dark:text-white">
+          Please connect your wallet to view your Batch 10 status
+        </AlertDescription>
       </Alert>
     );
   }
@@ -93,12 +97,12 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle>Your Status</CardTitle>
-            <span className="px-2 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Not a Member</span>
+            <CardTitle className="!text-white dark:!text-white">Your Status</CardTitle>
+            <span className="px-2 py-1 text-sm font-medium !text-red-800 bg-red-100 rounded-full">Not a Member</span>
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-sm opacity-70">You are not currently a member of Batch 10</p>
+          <p className="text-sm opacity-70 !text-white dark:!text-white">You are not currently a member of Batch 10</p>
         </CardContent>
       </Card>
     );
@@ -109,14 +113,16 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle>Your Status</CardTitle>
+            <CardTitle className="!text-white dark:!text-white">Your Status</CardTitle>
             <span className="px-2 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">
               Ready to Check In
             </span>
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-sm opacity-70">You are a Batch 10 member! Deploy your contract to check in</p>
+          <p className="text-sm opacity-70 !text-white dark:!text-white">
+            You are a Batch 10 member! Deploy your contract to check in
+          </p>
         </CardContent>
       </Card>
     );
@@ -126,12 +132,12 @@ const StatusSection = ({ connectedAddress, isAllowListed, isCheckedIn, isLoading
     <Card className="w-9/12 md:w-[446px]">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle>Your Status</CardTitle>
+          <CardTitle className="!text-white dark:!text-white">Your Status</CardTitle>
           <span className="px-2 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Checked In</span>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="text-sm text-left opacity-70">
+        <div className="text-sm text-left opacity-70 !text-white dark:!text-white">
           Active with wallet address: <Address address={connectedAddress} />
         </div>
       </CardContent>
@@ -192,7 +198,7 @@ const Home: NextPage = () => {
             BATCH 10
           </h1>
           <div className="author">
-            <h2>Buidl Guidl</h2>
+            <h2 className="!text-white dark:text-white">Buidl Guidl</h2>
           </div>
           <div className="model"></div>
         </div>
@@ -200,19 +206,21 @@ const Home: NextPage = () => {
       <div className="!h-max banner">
         <div className="flex-grow w-screen z-[9999]">
           {error ? (
-            <div className="p-4 text-red-700 bg-red-100 rounded-lg" role="alert">
+            <div className="p-4 !text-red-700 bg-red-100 rounded-lg" role="alert">
               <p>Error fetching contract data: {error.message}</p>
             </div>
           ) : (
             <div className="relative">
               <div className="flex justify-center gap-2 mb-4 text-lg">
-                <span className="font-bold">Checked in builders count:</span>
+                <span className="font-bold !text-white dark:text-white">Checked in builders count:</span>
                 {counterLoading ? (
                   <span className="animate-pulse">
                     <div className="w-12 h-6 bg-gray-200 rounded"></div>
                   </span>
                 ) : (
-                  <span>{checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}</span>
+                  <span className="!text-white dark:text-white">
+                    {checkedInCounter !== undefined ? Number(checkedInCounter) : "0"}
+                  </span>
                 )}
               </div>
 
